@@ -1,0 +1,185 @@
+{
+    "GetCustomers": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetReceivableCharges": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId",
+        "date": "$config.date"
+      }
+    },
+    "GetCustomerSubscriptions": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId"
+      }
+    },
+    "CreateSubscriptionsAmendment": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId"
+      }
+    },
+    "GetSubscriptionsAmendmentStatus": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetCustomerPlatformsConfigurations": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "ConfigurePlatforms": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetAllPlatforms": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetPlatformsForSkus": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetPlatformRequiredParameters": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "CancelSubscriptions": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId"
+      }
+    },
+    "GetSubscriptionsCancellationStatus": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "ValidatePlaceOrder": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId"
+      }
+    },
+    "PlaceOrder": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId"
+      }
+    },
+    "GetCustomerSubscriptionsDetails": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId"
+      }
+    },
+    "GetCustomerSubscriptionsPricingInformation": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId"
+      }
+    },
+    "TrackRequest": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetCustomerCatalog": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetCustomerCatalogItemsPricingInformation": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetCustomerPlatformDetails": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetCustomerMeterUsages": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      }
+    },
+    "GetCustomerSubscriptionMeters": {
+      "headers": {
+        "Authorization": "$secrets.Authorization",
+        "Ocp-Apim-Subscription-Key": "$secrets.Ocp_Apim_Subscription_Key",
+        "Accept-Language": "$config.Accept_Language"
+      },
+      "query": {
+        "customerId": "$config.customerId",
+        "platformId": "$config.platformId"
+      }
+    }
+  }

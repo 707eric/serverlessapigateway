@@ -1,0 +1,2878 @@
+openapi: 3.0.0
+info:
+  version: 2.1.0
+  title: Perimeter81 Public API
+  description: The YAML for Perimeter81 Public API.
+  contact: {}
+tags: []
+paths:
+  /v2.1/networks:
+    get:
+      operationId: getNetworks
+      summary: Get all Networks
+      description: List all networks
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Network'
+                type: array
+                description: Network list.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+      - Networks
+    post:
+      operationId: NetworksControllerV2_networkCreate
+      summary: Create network
+      description: 'Required permissions: `["network:create"]`<br><br>Create networks.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeployNetworkPayload'
+      responses:
+        '202':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '402':
+          description: Insufficient licenses
+        '403':
+          description: Forbidden
+      tags:
+      - Networks
+  /v2.1/networks/{networkId}:
+    delete:
+      operationId: NetworksControllerV2_networkDelete
+      summary: Delete network
+      description: 'Required permissions: `["network:delete"]`<br><br>Delete network.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResult'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+      tags:
+      - Networks
+    get:
+      operationId: NetworksControllerV2_networkFind
+      summary: Get network by Id
+      description: 'Required permissions: `["network:read"]`<br><br>List network.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Network'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+      tags:
+      - Networks
+    put:
+      operationId: NetworksControllerV2_networkUpdate
+      summary: Update network
+      description: 'Required permissions: `["network:update"]`<br><br>Update network.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNetworkDto'
+      responses:
+        '200':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatedNetwork'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+      tags:
+      - Networks
+  /v2.1/networks/{networkId}/instances:
+    post:
+      operationId: NetworksControllerV2_addNetworkInstance
+      summary: Add gateway
+      description: 'Required permissions: `["network:create"]`<br><br>Add gateway.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInstancesInNetworkPayload'
+      responses:
+        '202':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '402':
+          description: Insufficient licenses
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+      tags:
+      - Gateways
+    delete:
+      operationId: NetworksControllerV2_deleteNetworkInstance
+      summary: Remove Gateways from Network
+      description: 'Required permissions: `["network:update"]`<br><br>Remove Gateways
+        from Network.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveRegionInstance'
+      responses:
+        '202':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResult'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+      tags:
+      - Gateways
+  /v2.1/networks/{networkId}/instances/{gatewayId}:
+    get:
+      operationId: getInstance
+      summary: Get Instance of a GW by ID
+      description: 'Required permissions: `["network:read"]`<br><br>Get Gateway.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: gatewayId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkInstance'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Gateway not found
+      tags:
+      - Gateways
+  /v2.1/networks/status/{statusId}:
+    get:
+      operationId: NetworksControllerV2_status
+      summary: Get status of asynchronous operations.
+      description: 'Required permissions: `["network:read"]`<br><br> status of asynchronous
+        operations.'
+      parameters:
+      - name: statusId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationStatus'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Status not found
+      tags:
+      - Networks
+  /v2.1/networks/regions:
+    get:
+      operationId: NetworksControllerV2_getRegions
+      summary: List of available regions
+      description: 'Required permissions: `["addon:read"]`<br><br>List of regions.'
+      parameters: []
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionsList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+      - Regions
+  /v2.1/networks/{networkId}/regions:
+    put:
+      operationId: NetworksControllerV2_addNetworkRegion
+      summary: Add regions to a network
+      description: 'Required permissions: `["Network:Update"]`<br><br>Network Update.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRegionInNetworkPayload'
+      responses:
+        '202':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResult'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+        '409':
+          description: Network region exists
+      tags:
+      - Regions
+    delete:
+      operationId: NetworksControllerV2_deleteNetworkRegion
+      summary: Remove regions from network
+      description: 'Required permissions: `["Network:Delete"]`<br><br>Remove Region.
+        Gateways will still be available through the remaining regions, in case you
+        removed the last region, the gateways will be removed as well.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveRegionDTO'
+      responses:
+        '202':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResult'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Region\Network not found
+      tags:
+      - Regions
+  /v2.1/networks/{networkId}/regions/{regionId}:
+    get:
+      operationId: getRegion
+      summary: Get region by ID
+      description: 'Required permissions: `["network:read"]`<br><br>Get Region.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: regionId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkRegion'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Region not found
+      tags:
+      - Regions
+  /v2.1/networks/{networkId}/tunnels/wireguard:
+    post:
+      operationId: createWireguardTunnel
+      summary: Create a new Wireguard tunnel
+      description: 'Required permissions: `["network:write"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWireguardTunnelPayload'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - Wireguard
+  /v2.1/networks/{networkId}/tunnels/wireguard/{tunnelId}:
+    get:
+      operationId: getWireguardTunnel
+      summary: Get a Wireguard tunnel
+      description: 'Required permissions: `["network:read"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireguardTunnel'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+      - Wireguard
+    put:
+      operationId: updateWireguardTunnel
+      summary: Update a Wireguard tunnel
+      description: 'Required permissions: `["network:write"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WireGuradDetails'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - Wireguard
+    delete:
+      operationId: deleteWireguardTunnel
+      summary: Delete Wireguard tunnel
+      description: 'Required permissions: `["network:delete"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - Wireguard
+  /v2.1/networks/{networkId}/tunnels/openvpn:
+    post:
+      operationId: createOpenVPNTunnel
+      summary: Create a new OpenVPN tunnel
+      description: 'Required permissions: `["network:write]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseTunnelValues'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - OpenVPN
+  /v2.1/networks/{networkId}/tunnels/openvpn/{tunnelId}:
+    get:
+      operationId: getOpenVPNTunnel
+      summary: Get one openVPN tunnel
+      description: 'Required permissions: `["network:read"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenVPNTunnel'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+      - OpenVPN
+    put:
+      operationId: updateOpenVPNTunnel
+      summary: Update openVPN Tunnel
+      description: 'Required permissions: `["network:write"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+      - OpenVPN
+    delete:
+      operationId: deleteOpenVPNTunnel
+      summary: Delete OpenVPN tunnel
+      description: 'Required permissions: `["network:delete"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - OpenVPN
+  /v2.1/networks/{networkId}/tunnels/ipsec/single:
+    post:
+      operationId: createIPSecSingleTunnelV2_1
+      summary: Create a new IPSec Single tunnel
+      description: 'Required permissions: `["network:write]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIPSecSinglePayloadV2_1'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - IPSec-Single
+  /v2.1/networks/{networkId}/tunnels/ipsec/single/{tunnelId}:
+    get:
+      operationId: getIPSecSingleTunnelV2_1
+      summary: Get one IPSec Single tunnel
+      description: 'Required permissions: `["network:read"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPSecSingleTunnelV2_1'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+      - IPSec-Single
+    put:
+      operationId: updateIPSecSingleTunnelV2_1
+      summary: Update IPSec Single Tunnel
+      description: 'Required permissions: `["network:write"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPSecSingleDetailsV2_1'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+      - IPSec-Single
+    delete:
+      operationId: deleteIPSecSingleTunnel
+      summary: Delete IPSec Single tunnel
+      description: 'Required permissions: `["network:delete"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - IPSec-Single
+  /v2.1/networks/{networkId}/tunnels/ipsec/redundant:
+    post:
+      operationId: createIPSecRedundantTunnelV2_1
+      summary: Create a new IPSec Redundant tunnel
+      description: 'Required permissions: `["network:write]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIPSecRedundantPayloadV2_1'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '402':
+          $ref: '#/components/responses/402'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - IPSec-Redundant
+  /v2.1/networks/{networkId}/tunnels/ipsec/redundant/{tunnelId}:
+    get:
+      operationId: getIPSecRedundantTunnelV2_1
+      summary: Get one IPSec Redundant tunnel
+      description: 'Required permissions: `["network:read"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPSecRedundantTunnelsV2_1'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+      - IPSec-Redundant
+    delete:
+      operationId: deleteIPSecRedundantTunnel
+      summary: Delete IPSec Redundant tunnel
+      description: 'Required permissions: `["network:delete"]`'
+      parameters:
+      - $ref: '#/components/parameters/networkIdParam'
+      - $ref: '#/components/parameters/tunnelIdParam'
+      responses:
+        '202':
+          $ref: '#/components/responses/202'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+      tags:
+      - IPSec-Redundant
+  /v2.1/status:
+    get:
+      operationId: getStatus
+      summary: Get system status
+      description: 'Required permissions: `[]`'
+      responses:
+        '200':
+          description: Ok
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Ok
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+      - Status
+  /v2.1/networks/{networkId}/policy:
+    get:
+      operationId: getFirewallPolicy
+      summary: Get firewall policy by network Id
+      description: 'Required permissions: `["network:read"]`.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirewallPolicy'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+      tags:
+      - Firewall Policy
+    put:
+      operationId: updateFirewallPolicy
+      summary: Update firewall policy by network ID
+      description: 'Required permissions: `["network:update"]`.'
+      parameters:
+      - name: networkId
+        required: true
+        in: path
+        schema:
+          $ref: '#/components/schemas/Alphanumeric'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirewallPolicy'
+      responses:
+        '202':
+          description: Request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Network not found
+      tags:
+      - Firewall Policy
+  /v2.1/objects/addresses:
+    get:
+      operationId: getObjectsAddresses
+      summary: Get object addresses
+      description: 'Required permissions: `["objects:read"]`.'
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectsAddressesResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+      - Objects Addresses
+    post:
+      operationId: postObjectsAddresses
+      summary: Create new Address object
+      description: 'Required permission: `["objects:create"]`.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectsAddressObj'
+      responses:
+        '201':
+          description: Created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    id:
+                      type: string
+                - $ref: '#/components/schemas/ObjectsAddressObj'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+      - Objects Addresses
+  /v2.1/objects/addresses/{objectId}:
+    put:
+      operationId: putObjectsAddresses
+      summary: Update Address object
+      description: 'Required permission: `["objects:update"]`'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectsAddressObj'
+      parameters:
+      - name: objectId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectsAddressObj'
+                description: The updated address.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict - You cannot delete an address that is associated
+            with one or more policies
+      tags:
+      - Objects Addresses
+    delete:
+      operationId: deleteObjectsAddresses
+      summary: Delete Address object
+      description: 'Required permission: `["objects:delete"]`'
+      parameters:
+      - name: objectId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict - You cannot delete an address that is associated
+            with one or more policies
+      tags:
+      - Objects Addresses
+  /v2.1/objects/services:
+    get:
+      operationId: getObjectsServices
+      summary: Get object services
+      description: 'Required permissions: `["objects:read"]`.'
+      responses:
+        '200':
+          description: Completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectsServicesResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+      - Objects Services
+    post:
+      operationId: postObjectsServices
+      summary: Create new Service object
+      description: 'Required permission: `["objects:create"]`.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectsServicesRequestObj'
+      responses:
+        '201':
+          description: Created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    id:
+                      type: string
+                - $ref: '#/components/schemas/ObjectsServicesResponseObj'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+      - Objects Services
+  /v2.1/objects/services/{objectId}:
+    put:
+      operationId: putObjectsServices
+      summary: Update Service object
+      description: 'Required permission: `["objects:update"]`'
+      parameters:
+      - name: objectId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectsServicesRequestObj'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectsServicesResponseObj'
+                description: The updated service.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict - You cannot update a service that is associated with
+            one or more policies
+      tags:
+      - Objects Services
+    delete:
+      operationId: deleteObjectsServices
+      summary: Delete Service object
+      description: 'Required permission: `["objects:delete"]`'
+      parameters:
+      - name: objectId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict - You cannot delete a service that is associated with
+            one or more policies
+      tags:
+      - Objects Services
+  /v2.1/applications:
+    get:
+      tags:
+      - Application
+      summary: Get Applications List
+      description: This GET API will retrieve a list of all applications
+      operationId: getApplications
+      parameters:
+      - name: name
+        in: query
+        required: false
+        description: Application name to filter
+        schema:
+          type: string
+      - name: host
+        in: query
+        required: false
+        description: Application host to filter
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: false
+        description: Application type to filter
+        schema:
+          type: string
+          example: http
+          enum:
+          - http
+          - https
+          - rdp
+          - ssh
+          - vnc
+      - name: page
+        in: query
+        required: false
+        description: Specifies the current page of the paginated result set
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: Defines the number of results per page
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        required: false
+        description: Sorts the results based on a specified field and order. Available
+          fields for sorting are name, host and type.
+        schema:
+          type: string
+          example: sort[name]=asc
+      responses:
+        '200':
+          description: Applications list retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationsListPaginatedResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Not Authorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      security:
+      - bearerAuth: []
+  /v2.1/applications/{applicationId}:
+    get:
+      tags:
+      - Application
+      summary: Get Application by Id
+      description: This GET API will allow to retrieve detailed information for a
+        specific application by Id
+      operationId: getApplicationById
+      parameters:
+      - name: applicationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Application retrieved successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/HttpApplication'
+                - $ref: '#/components/schemas/HttpsApplication'
+                - $ref: '#/components/schemas/RdpApplication'
+                - $ref: '#/components/schemas/SshApplication'
+                - $ref: '#/components/schemas/VncApplication'
+        '400':
+          description: Bad Request
+        '401':
+          description: Not Authorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Application Not Found
+        '500':
+          description: Internal Server Error
+      security:
+      - bearerAuth: []
+  /v2.1/applications/status/{statusId}:
+    get:
+      tags:
+      - Application
+      summary: Get status of Application creation process by statusId
+      description: This endpoint should retrieve status of creating application process
+        using statusId
+      operationId: getApplicationStatus
+      parameters:
+      - name: statusId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Application was created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationStatusResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Not Authorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Application Not Found
+        '500':
+          description: Internal Server Error
+      security:
+      - bearerAuth: []
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  responses:
+    '202':
+      description: Request accepted
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncOperationResponse'
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    '402':
+      description: Insufficient licenses
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    '404':
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    '422':
+      description: Unprocessable entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    networkIdParam:
+      name: networkId
+      in: path
+      required: true
+      schema:
+        type: string
+    tunnelIdParam:
+      name: tunnelId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    AsyncOperationResponse:
+      type: object
+      properties:
+        statusUrl:
+          type: string
+        samplingTime:
+          type: integer
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+    ObjectsAddressesResponse:
+      allOf:
+      - type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectsAddressObj'
+        required:
+        - data
+      - $ref: '#/components/schemas/ObjectsPaginationObj'
+    ObjectsServicesResponse:
+      allOf:
+      - type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectsServicesResponseObj'
+        required:
+        - data
+      - $ref: '#/components/schemas/ObjectsPaginationObj'
+    ObjectsPaginationObj:
+      type: object
+      properties:
+        page:
+          $ref: '#/components/schemas/NumberPositive500'
+        totalPage:
+          $ref: '#/components/schemas/NumberPositive500'
+        itemsTotal:
+          $ref: '#/components/schemas/NumberPositive500'
+      required:
+      - page
+      - totalPage
+      - itemsTotal
+    ObjectsAddressObj:
+      required:
+      - name
+      allOf:
+      - type: object
+        required:
+        - name
+        properties:
+          id:
+            type: string
+            description: Unique Address ID
+          name:
+            $ref: '#/components/schemas/ObjectsName'
+          description:
+            type: string
+      - type: object
+        oneOf:
+        - $ref: '#/components/schemas/ObjectsAddressIP'
+        - $ref: '#/components/schemas/ObjectsAddressIPList'
+        - $ref: '#/components/schemas/ObjectsAddressCIDR'
+    ObjectsAddressIP:
+      type: object
+      required:
+      - value
+      - valueType
+      properties:
+        valueType:
+          type: string
+          enum:
+          - ip
+        value:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/components/schemas/IP'
+    ObjectsAddressIPList:
+      type: object
+      required:
+      - value
+      - valueType
+      properties:
+        valueType:
+          type: string
+          enum:
+          - list
+        value:
+          description: Must be a unique list of IPs
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/IP'
+    ObjectsAddressCIDR:
+      type: object
+      required:
+      - value
+      - valueType
+      properties:
+        valueType:
+          type: string
+          enum:
+          - cidr
+        value:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/components/schemas/CIDR'
+    ObjectsServicesRequestObj:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/ObjectsName'
+        description:
+          type: string
+        protocols:
+          items:
+            $ref: '#/components/schemas/ObjectsServicesProtocolRequestObj'
+          type: array
+      additionalProperties: false
+      required:
+      - name
+      - protocols
+    ObjectsServicesProtocolRequestObj:
+      anyOf:
+      - $ref: '#/components/schemas/ObjectServiceProtocolTCPUDP'
+      - $ref: '#/components/schemas/ObjectServiceProtocolICMPRequest'
+    ObjectsServicesProtocolResponseObj:
+      anyOf:
+      - $ref: '#/components/schemas/ObjectServiceProtocolTCPUDP'
+      - $ref: '#/components/schemas/ObjectServiceProtocolICMPResponse'
+    ObjectsServicesResponseObj:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/ObjectsName'
+        description:
+          type: string
+        protocols:
+          items:
+            $ref: '#/components/schemas/ObjectsServicesProtocolResponseObj'
+          type: array
+      required:
+      - name
+      - protocols
+    ObjectServiceProtocolSingle:
+      type: object
+      required:
+      - valueType
+      - value
+      properties:
+        valueType:
+          type: string
+          enum:
+          - single
+        value:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/components/schemas/PortNumber'
+    ObjectServiceProtocolRange:
+      type: object
+      required:
+      - valueType
+      - value
+      properties:
+        valueType:
+          type: string
+          enum:
+          - range
+        value:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            $ref: '#/components/schemas/PortNumber'
+    ObjectServiceProtocolList:
+      type: object
+      required:
+      - valueType
+      - value
+      properties:
+        valueType:
+          type: string
+          enum:
+          - list
+        value:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/PortNumber'
+    ObjectServiceProtocolTCPUDP:
+      oneOf:
+      - $ref: '#/components/schemas/ObjectServiceProtocolSingle'
+      - $ref: '#/components/schemas/ObjectServiceProtocolRange'
+      - $ref: '#/components/schemas/ObjectServiceProtocolList'
+      type: object
+      required:
+      - protocol
+      properties:
+        protocol:
+          type: string
+          enum:
+          - tcp
+          - udp
+    ObjectServiceProtocolICMPResponse:
+      type: object
+      required:
+      - protocol
+      - protocolOptions
+      properties:
+        protocol:
+          type: string
+          enum:
+          - icmp
+        protocolOptions:
+          $ref: '#/components/schemas/ObjectServiceProtocolOptionsICMPresponse'
+    ObjectServiceProtocolICMPRequest:
+      type: object
+      required:
+      - protocol
+      - protocolOptions
+      properties:
+        protocol:
+          type: string
+          enum:
+          - icmp
+        protocolOptions:
+          $ref: '#/components/schemas/ObjectServiceProtocolOptionsICMPrequest'
+    ObjectServiceProtocolOptionsICMPresponse:
+      description: -1 means 'any', the rest of the values are the RFC default ICMP
+        parameters
+      type: object
+      properties:
+        code:
+          type: integer
+        description:
+          type: string
+      enum:
+      - code: -1
+        description: Any
+      - code: 0
+        description: Echo Reply
+      - code: 3
+        description: Destination Unreachable
+      - code: 5
+        description: Redirect
+      - code: 8
+        description: Echo
+      - code: 9
+        description: Router Advertisement
+      - code: 10
+        description: Router Selection
+      - code: 11
+        description: Time Exceeded
+      - code: 12
+        description: Parameter Problem
+      - code: 13
+        description: Timestamp
+      - code: 14
+        description: Timestamp Reply
+      - code: 40
+        description: Photuris
+      - code: 42
+        description: Extended Echo Request
+      - code: 43
+        description: Extended Echo Reply
+    ObjectServiceProtocolOptionsICMPrequest:
+      description: -1 means 'any', the rest of the values are the RFC default ICMP
+        parameters
+      type: integer
+      enum:
+      - -1
+      - 0
+      - 3
+      - 5
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 40
+      - 42
+      - 43
+    DeployNetworkPayload:
+      properties:
+        network:
+          $ref: '#/components/schemas/CreateNetworkPayload'
+        regions:
+          items:
+            $ref: '#/components/schemas/CreateRegionInNetworkPayload'
+          type: array
+          description: Region list.
+      type: object
+      required:
+      - network
+      - regions
+    AsyncOperationStatus:
+      type: object
+      properties:
+        completed:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/AsyncOperationResult'
+    AsyncOperationResult:
+      type: object
+      properties:
+        resource:
+          type: string
+        statusCode:
+          type: integer
+        reason:
+          items:
+            type: string
+          type: array
+          description: Reasons list.
+    RegionsList:
+      properties:
+        regions:
+          items:
+            $ref: '#/components/schemas/Region'
+          type: array
+          description: description of regions dto object.
+    RemoveRegionInstance:
+      properties:
+        regions:
+          items:
+            $ref: '#/components/schemas/RemoveRegionPayload'
+          type: array
+          description: Region list.
+      type: object
+      required:
+      - regions
+    RemoveRegionPayload:
+      properties:
+        regionId:
+          type: string
+          description: Region ID.
+        instances:
+          items:
+            $ref: '#/components/schemas/RemoveInstancePayload'
+          type: array
+    RemoveInstancePayload:
+      properties:
+        id:
+          type: string
+    RemoveRegionDTO:
+      properties:
+        regionId:
+          type: string
+      type: object
+      required:
+      - regionId
+      additionalProperties: false
+    Region:
+      properties:
+        countryCode:
+          type: string
+        continentCode:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+        className:
+          type: string
+        objectName:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        id:
+          type: string
+    NetworkTunnelBase:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            description: Unique ID.
+          network:
+            type: string
+            description: ID of the network.
+          region:
+            type: string
+            description: ID of the network region.
+          instance:
+            type: string
+            description: ID of the network instance.
+          interfaceName:
+            type: string
+          type:
+            enum:
+            - connector
+            - ipsec
+            - openvpn
+            type: string
+          isHA:
+            type: boolean
+            description: Indicates if it's a redundant tunnel.
+          tenantId:
+            type: string
+            description: ID of the tenant.
+        required:
+        - id
+        - network
+        - region
+        - instance
+        - interfaceName
+        - type
+        - isHA
+        - tenantId
+        additionalProperties: false
+      - $ref: '#/components/schemas/BaseDates'
+    NetworkTunnelOpenvpn:
+      allOf:
+      - $ref: '#/components/schemas/NetworkTunnelBase'
+      - type: object
+        properties:
+          passphrase:
+            $ref: '#/components/schemas/Passphrase'
+          username:
+            type: string
+            description: Openvpn username.
+        required:
+        - passphrase
+        - username
+        additionalProperties: false
+    NetworkTunnelWireguard:
+      allOf:
+      - $ref: '#/components/schemas/NetworkTunnelBase'
+      - type: object
+        properties:
+          leftAllowedIP:
+            minLength: 1
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+          leftEndpoint:
+            $ref: '#/components/schemas/IP'
+          vault:
+            type: string
+            description: vault.
+          requestConfigToken:
+            type: string
+            description: requestConfigToken.
+        required:
+        - leftAllowedIP
+        - leftEndpoint
+        - vault
+        - requestConfigToken
+        additionalProperties: false
+    NetworkIpsecBase:
+      allOf:
+      - $ref: '#/components/schemas/IPSecAdvancedSettingsV2_1'
+      - type: object
+        properties:
+          right:
+            $ref: '#/components/schemas/IP'
+          rightID:
+            oneOf:
+            - $ref: '#/components/schemas/IP'
+            - type: string
+              pattern: ^[a-zA-Z0-9]{3,25}$
+          passphrase:
+            $ref: '#/components/schemas/Passphrase'
+          dpdAction:
+            type: string
+            description: dpdAction.
+          leftSubnets:
+            minLength: 1
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+          rightSubnets:
+            minLength: 1
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        required:
+        - right
+        - rightID
+        - passphrase
+        - dpdAction
+        - leftSubnets
+        - rightSubnets
+        additionalProperties: false
+    NetworkTunnelIpsecSingle:
+      allOf:
+      - $ref: '#/components/schemas/NetworkTunnelBase'
+      - $ref: '#/components/schemas/NetworkIpsecBase'
+    NetworkHaTunnelID:
+      allOf:
+      - $ref: '#/components/schemas/BaseDates'
+      - type: object
+        properties:
+          network:
+            type: string
+            description: ID of the network.
+          tunnels:
+            type: array
+            items:
+              type: string
+          type:
+            type: string
+            pattern: ipsec
+          tenantId:
+            type: string
+            description: tenantId.
+          id:
+            type: string
+            description: id.
+        required:
+        - network
+        - tunnels
+        - type
+        - tenantId
+        - id
+        additionalProperties: false
+    NetworkTunnelIpsecRedundant:
+      allOf:
+      - $ref: '#/components/schemas/NetworkTunnelBase'
+      - $ref: '#/components/schemas/NetworkIpsecBase'
+      - type: object
+        properties:
+          haTunnelID:
+            $ref: '#/components/schemas/NetworkHaTunnelID'
+          rightASN:
+            $ref: '#/components/schemas/ASN'
+          rightPrivateIP:
+            $ref: '#/components/schemas/IP'
+          leftPrivateIP:
+            $ref: '#/components/schemas/IP'
+        required:
+        - haTunnelID
+        - rightASN
+        - rightPrivateIP
+        - leftPrivateIP
+        additionalProperties: false
+    NetworkTunnel:
+      anyOf:
+      - $ref: '#/components/schemas/NetworkTunnelOpenvpn'
+      - $ref: '#/components/schemas/NetworkTunnelWireguard'
+      - $ref: '#/components/schemas/NetworkTunnelIpsecSingle'
+      - $ref: '#/components/schemas/NetworkTunnelIpsecRedundant'
+    NetworkInstance:
+      allOf:
+      - $ref: '#/components/schemas/BaseDates'
+      - type: object
+        properties:
+          network:
+            type: string
+            description: ID of the network.
+          region:
+            type: string
+            description: ID of the network region.
+          instanceType:
+            type: string
+          imageType:
+            type: string
+          imageVersion:
+            type: string
+          dns:
+            type: string
+          ip:
+            type: string
+          tunnels:
+            items:
+              $ref: '#/components/schemas/NetworkTunnel'
+            type: array
+            description: List of network tunnels.
+          id:
+            type: string
+            description: Unique ID.
+          tenantId:
+            type: string
+            description: ID of the tenant.
+        required:
+        - network
+        - region
+        - instanceType
+        - imageType
+        - imageVersion
+        - dns
+        - ip
+        - tunnels
+        - id
+        - tenantId
+    NetworkRegion:
+      allOf:
+      - $ref: '#/components/schemas/BaseDates'
+      - type: object
+        properties:
+          network:
+            type: string
+            description: ID of the network.
+          dns:
+            type: string
+            description: DNS of the region.
+          name:
+            type: string
+            description: Name of the network region.
+          instances:
+            items:
+              $ref: '#/components/schemas/NetworkInstance'
+            type: array
+            description: Network instances.
+          id:
+            type: string
+            description: Unique ID.
+          tenantId:
+            type: string
+            description: ID of the tenant.
+        required:
+        - network
+        - dns
+        - name
+        - instances
+        - id
+        - tenantId
+    BasicNetwork:
+      allOf:
+      - $ref: '#/components/schemas/BaseDates'
+      - type: object
+        properties:
+          dns:
+            type: string
+            description: DNS of the network.
+          subnet:
+            type: string
+            description: Subnet of the network.
+          accessType:
+            enum:
+            - public
+            - private
+            type: string
+          applications:
+            items:
+              type: string
+            type: array
+            description: List of IDs of assigned applications.
+          tags:
+            items:
+              type: string
+            type: array
+            description: List of network tags.
+          name:
+            type: string
+            description: Network name.
+          isDefault:
+            type: boolean
+            description: Indicates that the network is default.
+          id:
+            type: string
+            description: Unique ID.
+          tenantId:
+            type: string
+            description: ID of the tenant.
+          asn:
+            $ref: '#/components/schemas/ASN'
+        required:
+        - dns
+        - subnet
+        - accessType
+        - applications
+        - tags
+        - name
+        - isDefault
+        - id
+        - tenantId
+    Network:
+      allOf:
+      - $ref: '#/components/schemas/BasicNetwork'
+      - type: object
+        properties:
+          regions:
+            items:
+              $ref: '#/components/schemas/NetworkRegion'
+            type: array
+            description: Network regions list.
+        required:
+        - regions
+    UpdatedNetwork:
+      allOf:
+      - $ref: '#/components/schemas/BasicNetwork'
+      - type: object
+        properties:
+          regions:
+            items:
+              type: string
+            type: array
+            description: Network regions id list.
+        required:
+        - regions
+    CreateNetworkPayload:
+      properties:
+        subnet:
+          type: string
+          maxLength: 20
+          description: Subnet of the network.
+        name:
+          type: string
+          description: Network name.
+        tags:
+          items:
+            type: string
+          type: array
+          description: List of network tags.
+      type: object
+      required:
+      - name
+    CreateRegionPayload:
+      properties:
+        regionId:
+          type: string
+          description: Region ID.
+    CreateRegionInNetworkPayload:
+      properties:
+        regionId:
+          type: string
+          description: Cloud provider region ID.
+        idle:
+          default: false
+          type: boolean
+          description: Create the gateway as disabled if true.
+      type: object
+      required:
+      - regionId
+      - idle
+      additionalProperties: false
+    CreateInstancesInNetworkPayload:
+      properties:
+        regionId:
+          type: string
+          description: Region ID.
+        idle:
+          default: false
+          type: boolean
+          description: Create the gateway as disabled if true.
+      type: object
+      required:
+      - regionId
+      - idle
+    UpdateNetworkDto:
+      type: object
+      properties:
+        network:
+          $ref: '#/components/schemas/BaseNetworkDto'
+      required:
+      - network
+    BaseNetworkDto:
+      properties:
+        name:
+          type: string
+          description: Network name
+        tags:
+          items:
+            type: string
+          type: array
+          description: List of network tags
+    OpenVPNTunnel:
+      allOf:
+      - $ref: '#/components/schemas/BaseTunnelValues'
+      - $ref: '#/components/schemas/BaseDates'
+      type: object
+      properties:
+        tunnelID:
+          type: string
+        type:
+          type: string
+          default: OpenVPN
+        accessKeyId:
+          type: string
+        secretAccessKey:
+          type: string
+    WireguardTunnel:
+      allOf:
+      - $ref: '#/components/schemas/WireGuradDetails'
+      - $ref: '#/components/schemas/BaseTunnelValues'
+      - $ref: '#/components/schemas/BaseDates'
+      - type: object
+        properties:
+          tunnelID:
+            type: string
+          type:
+            type: string
+            default: wireguard
+    CreateWireguardTunnelPayload:
+      allOf:
+      - $ref: '#/components/schemas/WireGuradDetails'
+      - $ref: '#/components/schemas/BaseTunnelValues'
+    WireGuradDetails:
+      type: object
+      properties:
+        remoteEndpoint:
+          $ref: '#/components/schemas/IP'
+        remoteSubnets:
+          minLength: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+      required:
+      - remoteEndpoint
+      - remoteSubnets
+    CreateIPSecSinglePayloadV2_1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTunnelValues'
+      - $ref: '#/components/schemas/IPSecSharedSettings'
+      - $ref: '#/components/schemas/IPSecSingleDetailsV2_1'
+      required:
+      - regionID
+      - gatewayID
+      - tunnelName
+      - passphrase
+      - remotePublicIP
+      - p81GatewaySubnets
+      - remoteGatewaySubnets
+      - ikeLifeTime
+      - lifetime
+      - dpdDelay
+      - dpdTimeout
+      - phase1
+      - phase2
+    IPSecSingleDetailsV2_1:
+      allOf:
+      - $ref: '#/components/schemas/IPSecAdvancedSettingsV2_1'
+      - $ref: '#/components/schemas/IPSecSharedSettings'
+      - type: object
+        properties:
+          passphrase:
+            $ref: '#/components/schemas/CreatePassphrase'
+          remotePublicIP:
+            $ref: '#/components/schemas/IP'
+          remoteID:
+            $ref: '#/components/schemas/remoteID'
+          phase1:
+            $ref: '#/components/schemas/IPSecPhaseV2_1'
+          phase2:
+            $ref: '#/components/schemas/IPSecPhaseV2_1'
+    IPSecSingleTunnelV2_1:
+      type: object
+      properties:
+        tunnelID:
+          type: string
+      allOf:
+      - $ref: '#/components/schemas/BaseTunnelValues'
+      - $ref: '#/components/schemas/IPSecSharedSettings'
+      - $ref: '#/components/schemas/IPSecSingleDetailsV2_1'
+      - $ref: '#/components/schemas/BaseDates'
+      - type: object
+        properties:
+          type:
+            type: string
+            default: ipsec
+    IPSecRedundantTunnelsV2_1:
+      allOf:
+      - $ref: '#/components/schemas/BaseDates'
+      - type: object
+        properties:
+          tunnelName:
+            $ref: '#/components/schemas/TunnelName'
+          regionID:
+            type: string
+          tunnel1:
+            $ref: '#/components/schemas/IPSecRedundantTunnel'
+          tunnel2:
+            $ref: '#/components/schemas/IPSecRedundantTunnel'
+          sharedSettings:
+            $ref: '#/components/schemas/IPSecSharedSettings'
+          advancedSettings:
+            $ref: '#/components/schemas/IPSecAdvancedSettingsV2_1'
+    IPSecRedundantTunnel:
+      allOf:
+      - $ref: '#/components/schemas/IPSecRedundantTunnelPayload'
+      - type: object
+        properties:
+          tunnelID:
+            type: string
+    CreateIPSecRedundantPayloadV2_1:
+      type: object
+      properties:
+        tunnelName:
+          $ref: '#/components/schemas/TunnelName'
+        regionID:
+          type: string
+        tunnel1:
+          $ref: '#/components/schemas/IPSecRedundantTunnelPayload'
+        tunnel2:
+          $ref: '#/components/schemas/IPSecRedundantTunnelPayload'
+        sharedSettings:
+          $ref: '#/components/schemas/IPSecSharedSettings'
+        advancedSettings:
+          $ref: '#/components/schemas/IPSecAdvancedSettingsV2_1'
+      required:
+      - tunnelName
+      - regionID
+      - tunnel1
+      - tunnel2
+      - sharedSettings
+      - advancedSettings
+      additionalProperties: false
+    IPSecRedundantTunnelPayload:
+      allOf:
+      - $ref: '#/components/schemas/IPSecRedundantTunnelDetails'
+      - type: object
+        properties:
+          gatewayID:
+            type: string
+        required:
+        - gatewayID
+        additionalProperties: false
+    IPSecRedundantTunnelDetails:
+      type: object
+      properties:
+        passphrase:
+          $ref: '#/components/schemas/CreatePassphrase'
+        p81GWinternalIP:
+          $ref: '#/components/schemas/IP'
+        remoteGWinernalIP:
+          $ref: '#/components/schemas/IP'
+        remotePublicIP:
+          $ref: '#/components/schemas/IP'
+        remoteASN:
+          $ref: '#/components/schemas/RemoteASN'
+        remoteID:
+          $ref: '#/components/schemas/remoteID'
+      required:
+      - passphrase
+      - p81GWinternalIP
+      - remoteGWinernalIP
+      - remotePublicIP
+      - remoteASN
+      - remoteID
+      additionalProperties: false
+    IPSecAlgorithmsV2_1:
+      type: object
+      properties:
+        auth:
+          minLength: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - md5
+            - sha1
+            - sha384
+            - sha256
+            - sha512
+        encryption:
+          minLength: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            enum:
+            - 3des
+            - blowfish128
+            - blowfish192
+            - blowfish256
+            - aes128
+            - aes192
+            - aes256
+    IPSecPhaseCommon:
+      type: object
+      properties:
+        dh:
+          description: Diffie Helman encryption
+          minLength: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: integer
+            enum:
+            - 2
+            - 5
+            - 14
+            - 19
+            - 20
+            - 21
+      required:
+      - auth
+      - encryption
+      - dh
+      additionalProperties: false
+    IPSecPhaseV2_1:
+      allOf:
+      - $ref: '#/components/schemas/IPSecAlgorithmsV2_1'
+      - $ref: '#/components/schemas/IPSecPhaseCommon'
+    IPSecAdvancedSettingsV2_1:
+      type: object
+      properties:
+        keyExchange:
+          type: string
+          enum:
+          - ikev1
+          - ikev2
+        ikeLifeTime:
+          $ref: '#/components/schemas/Lifetime'
+        lifetime:
+          $ref: '#/components/schemas/Lifetime'
+        dpdDelay:
+          $ref: '#/components/schemas/DPDTime'
+        dpdTimeout:
+          $ref: '#/components/schemas/DPDTime'
+        phase1:
+          $ref: '#/components/schemas/IPSecPhaseV2_1'
+        phase2:
+          $ref: '#/components/schemas/IPSecPhaseV2_1'
+      required:
+      - keyExchange
+      - ikeLifeTime
+      - lifetime
+      - dpdDelay
+      - dpdTimeout
+      - phase1
+      - phase2
+      additionalProperties: false
+    Passphrase:
+      type: string
+      pattern: ^[$a-zA-Z1-9_\/\.][$a-zA-Z0-9_\/\.]{7,101}$
+    CreatePassphrase:
+      type: string
+      pattern: ^[a-zA-Z1-9._][a-zA-Z0-9._]{7,63}$
+    DPDTime:
+      type: string
+      pattern: ^([5-9]|[1-5][0-9]|60)s$
+    Lifetime:
+      type: string
+      pattern: ^((1[0-9]|[2-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)s)|(([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1[0-3][0-9][0-9]|14[0-3][0-9]|1440)m)|(([1-9]|1[0-9]|2[0-4])h)$
+    ASN:
+      type: integer
+      minimum: 64510
+      maximum: 65534
+    RemoteASN:
+      type: integer
+      oneOf:
+      - type: integer
+        minimum: 1
+        maximum: 23455
+      - type: integer
+        minimum: 23457
+        maximum: 64495
+      - type: integer
+        minimum: 64512
+        maximum: 65534
+      - type: integer
+        minimum: 131072
+        maximum: 4294967294
+    IPSecSharedSettings:
+      type: object
+      properties:
+        p81GatewaySubnets:
+          minLength: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        remoteGatewaySubnets:
+          minLength: 1
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        features:
+          type: object
+          properties:
+            symmetricInnerMesh:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  default: false
+              additionalProperties: false
+      required:
+      - p81GatewaySubnets
+      - remoteGatewaySubnets
+      additionalProperties: false
+    UsersAndGroups:
+      type: object
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/AlphanumericWithSpace'
+          type: array
+          minItems: 1
+          maxItems: 5
+          description: List of IDs of users.
+        groups:
+          items:
+            $ref: '#/components/schemas/AlphanumericWithSpace'
+          type: array
+          minItems: 1
+          description: List of IDs of groups.
+      additionalProperties: false
+    Addresses:
+      type: object
+      properties:
+        addresses:
+          items:
+            $ref: '#/components/schemas/AlphanumericWithSpace'
+          type: array
+          minItems: 1
+          description: List of IDs of address objects.
+      required:
+      - addresses
+      additionalProperties: false
+    SourcesAndDestinations:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/UsersAndGroups'
+      - $ref: '#/components/schemas/Addresses'
+    FirewallPolicyRule:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Alphanumeric'
+          description: Policy rule ID.
+        name:
+          type: string
+          minLength: 5
+          maxLength: 50
+          description: Policy rule ID.
+        enabled:
+          type: boolean
+          description: wether the rule is enabled.
+        allowed:
+          type: boolean
+          description: wether the rule is enabled.
+        sources:
+          $ref: '#/components/schemas/SourcesAndDestinations'
+        destinations:
+          $ref: '#/components/schemas/SourcesAndDestinations'
+        services:
+          items:
+            type: string
+            pattern: ^[a-zA-Z0-9_- ]+$
+          type: array
+          minItems: 1
+          description: List of services objects IDs.
+      required:
+      - name
+      - enabled
+      - allowed
+      - sources
+      - destinations
+      additionalProperties: false
+    FirewallPolicy:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: whether the policy is enabled.
+        allowed:
+          type: boolean
+          description: whether the policy is allow or deny.
+        id:
+          $ref: '#/components/schemas/Alphanumeric'
+          description: network policy id
+        policyRules:
+          items:
+            $ref: '#/components/schemas/FirewallPolicyRule'
+          type: array
+          description: an array of policy rules.
+          required:
+          - sources
+          - destinations
+        trace:
+          type: boolean
+          description: whether the policy is traced.
+      required:
+      - enabled
+      - allowed
+      - id
+      - policyRules
+      additionalProperties: false
+    BaseDates:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+          description: The date when this record was created.
+        updatedAt:
+          format: date-time
+          type: string
+          description: The date of last update of the record.
+      required:
+      - createdAt
+      additionalProperties: false
+    BaseTunnelValues:
+      type: object
+      properties:
+        regionID:
+          type: string
+          description: Region ID
+        gatewayID:
+          type: string
+          description: Gateway ID
+        tunnelName:
+          $ref: '#/components/schemas/TunnelName'
+      required:
+      - regionID
+      - gatewayID
+      - tunnelName
+    NumberPositive500:
+      type: number
+      minimum: 0
+      maximum: 500
+    IP:
+      type: string
+      format: ipv4
+    CIDR:
+      type: string
+      pattern: ^((?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3})(\/(3[0-2]|[1-2][0-9]|[0-9]))$
+    PortNumber:
+      type: integer
+      minimum: 1
+      maximum: 65535
+    ObjectsName:
+      type: string
+      pattern: ^[a-zA-Z0-9_ ]+$
+      description: The name of the Objects
+      minLength: 3
+      maxLength: 100
+    TunnelName:
+      type: string
+      pattern: ^[a-zA-Z0-9]*$
+      description: The name of the tunnel
+      minLength: 3
+      maxLength: 15
+    Alphanumeric:
+      type: string
+      pattern: ^[a-zA-Z0-9]+$
+      description: Any alphanumeric value w/o space
+      minLength: 1
+    AlphanumericWithSpace:
+      type: string
+      pattern: ^[a-zA-Z0-9 ]+$
+      description: Any alphanumeric value with space
+      minLength: 1
+    remoteID:
+      oneOf:
+      - $ref: '#/components/schemas/IP'
+      - type: string
+        pattern: ^[a-zA-Z0-9]{3,25}$
+    ApplicationAuth:
+      type: object
+      description: Authentication settings related to the application
+      properties:
+        authEnabled:
+          type: boolean
+        authUsername:
+          type: string
+          minLength: 1
+        authPassword:
+          type: string
+          minLength: 1
+        authDomain:
+          type: string
+          minLength: 1
+    ApplicationAlias:
+      type: object
+      description: URL alias settings to access the application via a user-friendly
+        URL under your own domain
+      properties:
+        aliasEnabled:
+          type: boolean
+        cname:
+          type: string
+          minLength: 1
+        sslCertificate:
+          type: string
+          minLength: 1
+      required:
+      - aliasEnabled
+    ApplicationHost:
+      type: object
+      description: Application host settings
+      properties:
+        value:
+          type: string
+          minLength: 1
+        source:
+          type: string
+          minLength: 1
+      required:
+      - value
+      - source
+    ApplicationPort:
+      type: object
+      description: Application port settings
+      properties:
+        value:
+          oneOf:
+          - type: integer
+            minimum: 0
+            maximum: 65353
+          - type: string
+            minLength: 1
+        source:
+          type: string
+          minLength: 1
+      required:
+      - value
+      - source
+    HttpAttributes:
+      type: object
+      description: HTTP Application attributes
+      properties:
+        checkStatus:
+          type: integer
+        checkPath:
+          type: string
+        startRelativePath:
+          type: string
+    HttpsAttributes:
+      type: object
+      description: HTTPS Application attributes
+      properties:
+        checkStatus:
+          type: integer
+        checkPath:
+          type: string
+        startRelativePath:
+          type: string
+        sslCertificateVerification:
+          type: boolean
+    RdpAttributes:
+      type: object
+      description: RDP Application attributes
+      properties:
+        maxConnections:
+          type: integer
+        disableClipboard:
+          type: boolean
+        ignoreTLSVerification:
+          type: boolean
+        adminConsole:
+          type: boolean
+        disablePrinting:
+          type: boolean
+        rdpSecurity:
+          type: string
+        clientType:
+          type: string
+          description: RDP client type
+          default: web
+          enum:
+          - web
+          - native
+      required:
+      - maxConnections
+    SshAttributes:
+      type: object
+      description: SSH Application attributes
+      properties:
+        maxConnections:
+          type: integer
+      required:
+      - maxConnections
+    VncAttributes:
+      type: object
+      description: VNC Application attributes
+      properties:
+        maxConnections:
+          type: integer
+        disableClipboard:
+          type: boolean
+      required:
+      - maxConnections
+    CommonApplication:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique application ID
+        name:
+          type: string
+          description: Application name
+        type:
+          type: string
+          description: Application type
+          enum:
+          - http
+          - https
+          - rdp
+          - ssh
+          - vnc
+        enabled:
+          type: boolean
+          description: Application enabling status
+        policy:
+          type: object
+          description: Application related Policy data
+          properties:
+            id:
+              type: string
+              description: Policy Id
+            name:
+              type: string
+              description: Policy name
+          required:
+          - id
+          - name
+        createdAt:
+          type: string
+          description: Application create date
+      required:
+      - id
+      - name
+      - type
+    BasicApplication:
+      allOf:
+      - $ref: '#/components/schemas/CommonApplication'
+      - type: object
+        properties:
+          network:
+            type: object
+            description: Application related Network data
+            properties:
+              id:
+                type: string
+                description: Network Id
+              name:
+                type: string
+                description: Network name
+              dns:
+                type: string
+                description: DNS of the network
+              subnet:
+                type: string
+                description: Subnet of the network
+            required:
+            - id
+            - name
+          icon:
+            type: object
+            description: Application icon
+            properties:
+              name:
+                type: string
+                description: Icon name
+              url:
+                type: string
+                description: Icon URL
+          users:
+            type: array
+            description: List of IDs of assigned users
+            items:
+              type: object
+              description: Application users
+              properties:
+                id:
+                  type: string
+                  description: Unique User ID
+                fullName:
+                  type: string
+                  description: User's firstname and lastname
+                username:
+                  type: string
+                  description: User's username
+          groups:
+            type: array
+            description: List of IDs of assigned groups
+            items:
+              type: object
+              description: Application groups
+              properties:
+                id:
+                  type: string
+                  description: Unique Group ID
+                name:
+                  type: string
+                  description: Group's name
+          auth:
+            $ref: '#/components/schemas/ApplicationAuth'
+          alias:
+            $ref: '#/components/schemas/ApplicationAlias'
+          displayIconAtLogin:
+            type: boolean
+            description: Determines if the application icon is displayed during user
+              login
+          fqdn:
+            type: string
+            minLength: 1
+            description: Fully qualified domain name (FQDN) associated with the application
+          host:
+            $ref: '#/components/schemas/ApplicationHost'
+          port:
+            $ref: '#/components/schemas/ApplicationPort'
+          updatedAt:
+            type: string
+            description: Application update date
+        required:
+        - network
+        - auth
+        - alias
+        - displayIconAtLogin
+        - fqdn
+        - host
+        - port
+    WebApplication:
+      allOf:
+      - $ref: '#/components/schemas/BasicApplication'
+      - type: object
+        properties:
+          headers:
+            type: object
+            description: Web Application headers
+    ApplicationsListObject:
+      allOf:
+      - $ref: '#/components/schemas/CommonApplication'
+      - type: object
+        properties:
+          network:
+            type: object
+            description: Application related Network data
+            properties:
+              id:
+                type: string
+                description: Network Id
+              name:
+                type: string
+                description: Network name
+            required:
+            - id
+            - name
+          host:
+            type: string
+            description: Application host
+          port:
+            oneOf:
+            - type: integer
+              minimum: 0
+              maximum: 65353
+            - type: string
+              minLength: 1
+            description: Application port
+        required:
+        - network
+        - host
+        - port
+    ApplicationsListResponse:
+      type: array
+      description: List of retrieved applications
+      items:
+        $ref: '#/components/schemas/ApplicationsListObject'
+    ApplicationsListPaginatedResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ApplicationsListResponse'
+        page:
+          type: integer
+          description: Current page number
+        totalPage:
+          type: integer
+          description: Number of all pages
+        itemsTotal:
+          type: integer
+          description: Number of all items
+    HttpApplication:
+      allOf:
+      - $ref: '#/components/schemas/WebApplication'
+      - type: object
+        properties:
+          attributes:
+            $ref: '#/components/schemas/HttpAttributes'
+    HttpsApplication:
+      allOf:
+      - $ref: '#/components/schemas/WebApplication'
+      - type: object
+        properties:
+          attributes:
+            $ref: '#/components/schemas/HttpsAttributes'
+    RdpApplication:
+      allOf:
+      - $ref: '#/components/schemas/BasicApplication'
+      - type: object
+        properties:
+          attributes:
+            $ref: '#/components/schemas/RdpAttributes'
+    SshApplication:
+      allOf:
+      - $ref: '#/components/schemas/BasicApplication'
+      - type: object
+        properties:
+          attributes:
+            $ref: '#/components/schemas/SshAttributes'
+    VncApplication:
+      allOf:
+      - $ref: '#/components/schemas/BasicApplication'
+      - type: object
+        properties:
+          attributes:
+            $ref: '#/components/schemas/VncAttributes'
+    ApplicationStatusResponse:
+      type: object
+      properties:
+        completed:
+          type: boolean
+          description: Shows whether the operation is completed
+        result:
+          type: object
+          properties:
+            statusCode:
+              type: integer
+              description: Response status code
+            resource:
+              type: string
+              description: Endpoint to get the resource if exists
+            reason:
+              type: array
+              description: Failure reasons
+              items:
+                type: string
+security:
+- bearer: []
+servers:
+- description: SwaggerHub API Auto Mocking
+  url: https://virtserver.swaggerhub.com/perimeter81/public-api-yaml/2.1.0
+- description: Perimeter81 API US
+  url: https://api.perimeter81.com/api/rest
+- description: Perimeter81 API EU
+  url: https://api.eu.sase.checkpoint.com/api/rest

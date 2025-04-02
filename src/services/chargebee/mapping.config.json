@@ -1,0 +1,960 @@
+{
+    "remove_an_advance_invoice_schedules": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "update_subscription_for_items": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "remove_coupons": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "resume_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "cancel_subscription_for_items": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "regenerate_an_invoice": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "list_subscriptions": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset",
+        "include_deleted": "$config.include_deleted",
+        "id": "$config.id",
+        "customer_id": "$config.customer_id",
+        "item_id": "$config.item_id",
+        "item_price_id": "$config.item_price_id",
+        "status": "$config.status",
+        "cancel_reason": "$config.cancel_reason",
+        "cancel_reason_code": "$config.cancel_reason_code",
+        "remaining_billing_cycles": "$config.remaining_billing_cycles",
+        "created_at": "$config.created_at",
+        "activated_at": "$config.activated_at",
+        "next_billing_at": "$config.next_billing_at",
+        "cancelled_at": "$config.cancelled_at",
+        "has_scheduled_changes": "$config.has_scheduled_changes",
+        "updated_at": "$config.updated_at",
+        "offline_payment_method": "$config.offline_payment_method",
+        "auto_close_invoices": "$config.auto_close_invoices",
+        "override_relationship": "$config.override_relationship",
+        "sort_by": "$config.sort_by",
+        "business_entity_id": "$config.business_entity_id",
+        "channel": "$config.channel"
+      }
+    },
+    "move_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "import_subscription_for_items": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "retrieve_advance_invoice": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "remove_scheduled_cancellation": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "retrieve_with_scheduled_changes": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "reactivate_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "charge_future_renewals": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "add_charge_at_term_end": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "remove_scheduled_changes": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "change_term_end": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "delete_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "create_subscription_for_items": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "import_unbilled_charges": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "remove_scheduled_resumption": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "retrieve_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "import_contract_term": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "override_billing_profile": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "remove_scheduled_pause": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "edit_advance_invoice_schedule": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "list_discounts_for_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset"
+      }
+    },
+    "list_contract_terms_for_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset"
+      }
+    },
+    "pause_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "scheduled_changes_a_subscription_scheduled_change": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "update_scheduled_changes_a_subscription_scheduled_change": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "delete_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "link_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "delink_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "delete_contacts_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "assign_payment_role": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "move_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "get_hierarchy": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "hierarchy_operation_type": "$config.hierarchy_operation_type"
+      }
+    },
+    "update_payment_method_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "retrieve_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "update_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "change_billing_date": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "list_customers": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset",
+        "include_deleted": "$config.include_deleted",
+        "id": "$config.id",
+        "first_name": "$config.first_name",
+        "last_name": "$config.last_name",
+        "email": "$config.email",
+        "company": "$config.company",
+        "phone": "$config.phone",
+        "auto_collection": "$config.auto_collection",
+        "taxability": "$config.taxability",
+        "created_at": "$config.created_at",
+        "updated_at": "$config.updated_at",
+        "offline_payment_method": "$config.offline_payment_method",
+        "auto_close_invoices": "$config.auto_close_invoices",
+        "channel": "$config.channel",
+        "business_entity_id": "$config.business_entity_id",
+        "sort_by": "$config.sort_by",
+        "relationship": "$config.relationship"
+      }
+    },
+    "create_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "add_contacts_to_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "list_of_contacts_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset"
+      }
+    },
+    "clear_personal_data_of_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "merge_customers": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "collect_payment_for_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "record_an_excess_payment_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "update_contacts_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "update_hierarchy_access_settings_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "update_billing_info_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "copy_card": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "switch_gateway": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "delete_card_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "update_card_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "subscription_renewal_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "include_delayed_charges": "$config.include_delayed_charges",
+        "use_existing_balances": "$config.use_existing_balances",
+        "ignore_scheduled_cancellation": "$config.ignore_scheduled_cancellation",
+        "ignore_scheduled_changes": "$config.ignore_scheduled_changes"
+      }
+    },
+    "cancel_subscription_for_items_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "resume_subscription_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "upcoming_invoices_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "regenerate_invoice_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "estimate_for_creating_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "subscription_change_term_end_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "pause_subscription_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "advance_invoice_estimate": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "create_a_quote_for_a_new_subscription_items": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "retrieve_a_usage": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "id": "$config.id"
+      }
+    },
+    "create_a_usage": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "delete_a_usage": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "enable/disable_subscription_entitlements": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "list_subscription_entitlements": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset"
+      }
+    },
+    "list_customer_entitlements": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset"
+      }
+    },
+    "list_entitlement_overrides_for_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset"
+      }
+    },
+    "upsert/remove_entitlement_overrides_for_a_subscription": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    },
+    "list_vouchers_for_a_customer": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      },
+      "query": {
+        "limit": "$config.limit",
+        "offset": "$config.offset",
+        "status": "$config.status",
+        "sort_by": "$config.sort_by"
+      }
+    },
+    "create_a_ramp": {
+      "headers": {
+        "chargebee-request-origin-device": "$config.chargebee_request_origin_device",
+        "chargebee-request-origin-user": "$config.chargebee_request_origin_user",
+        "chargebee-request-origin-user-encoded": "$config.chargebee_request_origin_user_encoded",
+        "chargebee-request-origin-ip": "$config.chargebee_request_origin_ip",
+        "chargebee-event-actions": "$config.chargebee_event_actions",
+        "chargebee-event-email": "$config.chargebee_event_email",
+        "chargebee-event-webhook": "$config.chargebee_event_webhook",
+        "chargebee-business-entity-id": "$config.chargebee_business_entity_id"
+      }
+    }
+  }

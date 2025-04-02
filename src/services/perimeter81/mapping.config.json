@@ -1,0 +1,12 @@
+{
+    "getApplications": {
+      "query": {
+        "name": "$config.name",
+        "host": "$config.host",
+        "type": "$config.type",
+        "page": "$config.page",
+        "limit": "$config.limit",
+        "sort": "$config.sort"
+      }
+    }
+  }
